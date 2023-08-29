@@ -9,7 +9,7 @@ class Employee(Company):
     e_dept=''
     e_desg=''
     e_sal=0
-    rno=dict()
+    rno={}
     dept={'Data and Intelligence':[],'Optima':[],'Global Delivery':[],'SmartOps':[]}
     desg={'Senior Manager':[],'Manager':[],'Software Developer':[],'Tester':[],'Accountant':[]}
     city={'Pune':[],'Gurgaon':[]}
@@ -82,6 +82,7 @@ class Employee(Company):
 
 e=Employee()
 n=int(input("Enter total number of Employees => "))
+print()
 for i in range(n):
     while True:
         name=input("Enter name of Employee => ")
@@ -106,7 +107,7 @@ for i in range(n):
             break
         print("Department is not valid")
     while True:
-        desg=input("Entor designation of Employee => ")
+        desg=input("Enter designation of Employee => ")
         if desg in ('Senior Manager','Manager','Software Developer','Tester','Accountant'):
             break
         print("Designation is not valid")
