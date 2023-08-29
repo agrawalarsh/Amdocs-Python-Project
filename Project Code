@@ -79,3 +79,37 @@ class Employee(Company):
         print(len(self.desg['Accountant']),"Employees with minimum monthly salary of 60000Rs are =>")
         for r in self.desg['Accountant']:
                 print(self.Infobyrno(r))
+
+e=Employee()
+n=int(input("Enter total number of Employees => "))
+for i in range(n):
+    while True:
+        name=input("Enter name of Employee => ")
+        cnt=0
+        for i in name:
+            if i.isdigit():
+                print("Name is not valid ")
+                cnt=1
+                break
+        if cnt==0:
+            break
+    rno=int(input("Enter Roll No of Employee => "))
+    add=input("Enter address of Company for Employee => ")
+    while True:
+        city=input("Enter city of Company of Employee => ")
+        if city in ('Pune','Gurgaon'):
+            break
+        print('City is not valid')
+    while True:
+        dept=input("Enter department of Employee => ")
+        if dept in ('Data and Intelligence','Optima','Global Delivery','SmartOps'):
+            break
+        print("Department is not valid")
+    while True:
+        desg=input("Entor designation of Employee => ")
+        if desg in ('Senior Manager','Manager','Software Developer','Tester','Accountant'):
+            break
+        print("Designation is not valid")
+    e.Accept(name,rno,add,city,dept,desg)
+    print()
+print("Details of",n,"Employees are recorded in the System")
