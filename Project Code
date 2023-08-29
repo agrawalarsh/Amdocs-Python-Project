@@ -1,0 +1,81 @@
+class Company:
+    c_name='Amdocs'
+    desg_hrs={'Senior Manager':10,'Manager':9,'Software Developer':8,'Tester':7,'Accountant':6}
+    c_add=''
+    c_loc=''
+class Employee(Company):
+    e_name=''
+    e_rollno=0
+    e_dept=''
+    e_desg=''
+    e_sal=0
+    rno=dict()
+    dept={'Data and Intelligence':[],'Optima':[],'Global Delivery':[],'SmartOps':[]}
+    desg={'Senior Manager':[],'Manager':[],'Software Developer':[],'Tester':[],'Accountant':[]}
+    city={'Pune':[],'Gurgaon':[]}
+    def Accept(self,name,rollno,add,loc,dept,desg):
+        self.e_name=name
+        self.e_rollno=rollno
+        self.c_add=add
+        self.c_loc=loc
+        self.e_dept=dept
+        self.e_desg=desg
+        self.CalculateSal(self.desg_hrs[self.e_desg])
+        self.rno[self.e_rollno]=[self.e_name,self.e_rollno,self.c_name,self.c_add,self.c_loc,self.e_dept,self.e_desg,self.e_sal]
+        self.dept[self.e_dept].append(self.e_rollno)
+        self.desg[self.e_desg].append(self.e_rollno)
+        self.city[self.c_loc].append(self.e_rollno)
+    def Display(self):
+        print("Total no of Employees present in record are",len(self.rno))
+        for k in self.rno.keys():
+            print(k,":",self.rno[k])
+    def Infobyrno(self,rollno):
+        if rollno in self.rno.keys():
+            print("Employee's name is",self.rno[rollno][0])
+            print(self.rno[rollno][0],"Roll no is",self.rno[rollno][1])
+            print(self.rno[rollno][0],"works for Company named",self.rno[rollno][2])
+            print(self.rno[rollno][0],"Company",self.rno[rollno][2],"is located at",self.rno[rollno][3],"in",self.rno[rollno][4],"City")
+            print(self.rno[rollno][0],"works in Department named",self.rno[rollno][5])
+            print(self.rno[rollno][0],"Designition is",self.rno[rollno][6])
+            print(self.rno[rollno][0],"monthly salary is",self.rno[rollno][7],"Rs")
+            print("------------------------------------------------------------------------------")
+        else:
+            print("Given Employee does not exist as per Company's record");
+    def Search(self):
+        n=int(input("On what basis you want to diplay information of the employees??.Enter 1 for Roll No. 2 for Department. 3 for Designation. 4 for City => "))
+        if(n==1):
+            r=int(input("Enter value of Roll no => "))
+            self.Infobyrno(r)
+        elif(n==2):
+            d=input("Enter the Department on which you want to display the information => ")
+            print()
+            print(len(self.dept[d]),"Employees working for",d,"Department are =>")
+            print()
+            for r in self.dept[d]:
+                print(self.Infobyrno(r))
+        elif(n==3):
+            d=input("Enter the Designation on which you want to display the information => ")
+            print()
+            print(len(self.desg[d]),"Employees working on",d,"Designation are =>")
+            print()
+            for r in self.desg[d]:
+                print(self.Infobyrno(r))
+        elif(n==4):
+            d=input("Enter the City on which you want to display the information => ")
+            print()
+            print(len(self.city[d]),"Employees working in",d,"City are =>")
+            print()
+            for r in self.city[d]:
+                print(self.Infobyrno(r))
+        else:
+            print("Invalid Input")
+    def CalculateSal(self,hrs):
+        self.e_sal=10000*hrs
+    def MaxSal(self):
+        print(len(self.desg['Senior Manager']),"Employees with maximum monthly salary of 100000Rs are =>")
+        for r in self.desg['Senior Manager']:
+                print(self.Infobyrno(r))
+    def MinSal(self):
+        print(len(self.desg['Accountant']),"Employees with minimum monthly salary of 60000Rs are =>")
+        for r in self.desg['Accountant']:
+                print(self.Infobyrno(r))
