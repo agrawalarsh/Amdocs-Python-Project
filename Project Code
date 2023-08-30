@@ -32,19 +32,19 @@ class Employee(Company):
     def Infobyrno(self,rollno):
         if rollno in self.rno.keys():
             print("Employee's name is",self.rno[rollno][0])
-            print(self.rno[rollno][0],"Roll no is",self.rno[rollno][1])
-            print(self.rno[rollno][0],"works for Company named",self.rno[rollno][2])
-            print(self.rno[rollno][0],"Company",self.rno[rollno][2],"is located at",self.rno[rollno][3],"in",self.rno[rollno][4],"City")
+            print(f"{self.rno[rollno][0]}'s ID is",self.rno[rollno][1])
+            print(f"{self.rno[rollno][0]} works for Company named",self.rno[rollno][2])
+            print(f"{self.rno[rollno][0]}'s Company",self.rno[rollno][2],"is located at",self.rno[rollno][3],"in",self.rno[rollno][4],"City")
             print(self.rno[rollno][0],"works in Department named",self.rno[rollno][5])
-            print(self.rno[rollno][0],"Designition is",self.rno[rollno][6])
-            print(self.rno[rollno][0],"monthly salary is",self.rno[rollno][7],"Rs")
+            print(f"{self.rno[rollno][0]}'s Designition is",self.rno[rollno][6])
+            print(f"{self.rno[rollno][0]}'s monthly salary is",self.rno[rollno][7],"Rs")
             print("------------------------------------------------------------------------------")
         else:
             print("Given Employee does not exist as per Company's record");
     def Search(self):
-        n=int(input("On what basis you want to diplay information of the employees??.Enter 1 for Roll No. 2 for Department. 3 for Designation. 4 for City => "))
+        n=int(input("On what basis you want to diplay information of the employees??.Enter 1 for ID. 2 for Department. 3 for Designation. 4 for City => "))
         if(n==1):
-            r=int(input("Enter value of Roll no => "))
+            r=int(input("Enter value of ID => "))
             self.Infobyrno(r)
         elif(n==2):
             d=input("Enter the Department on which you want to display the information => ")
@@ -85,29 +85,29 @@ n=int(input("Enter total number of Employees => "))
 print()
 for i in range(n):
     while True:
-        name=input("Enter name of Employee => ")
+        name=input(f"Enter name of Employee {i+1} => ")
         cnt=0
-        for i in name:
-            if i.isdigit():
+        for j in name:
+            if j.isdigit():
                 print("Name is not valid ")
                 cnt=1
                 break
         if cnt==0:
             break
-    rno=int(input("Enter Roll No of Employee => "))
-    add=input("Enter address of Company for Employee => ")
+    rno=int(input(f"Enter ID of Employee {i+1} => "))
+    add=input(f"Enter address of Company for Employee {i+1} => ")
     while True:
-        city=input("Enter city of Company of Employee => ")
+        city=input(f"Enter city of Company of Employee {i+1} => ")
         if city in ('Pune','Gurgaon'):
             break
         print('City is not valid')
     while True:
-        dept=input("Enter department of Employee => ")
+        dept=input(f"Enter department of Employee {i+1} => ")
         if dept in ('Data and Intelligence','Optima','Global Delivery','SmartOps'):
             break
         print("Department is not valid")
     while True:
-        desg=input("Enter designation of Employee => ")
+        desg=input(f"Enter designation of Employee {i+1} => ")
         if desg in ('Senior Manager','Manager','Software Developer','Tester','Accountant'):
             break
         print("Designation is not valid")
